@@ -1,15 +1,13 @@
 const { Op } = require("sequelize")
-// const Country = require("../models/Country")
 const{ Country, Activity} = require("../db")
 
 
 
 const searchCountryByName = async (name) => {
-  let nameToUpperCase = name.charAt(0).toUpperCase() + name.slice(1) 
 
   const foundCountry  = await Country.findAll({
       where: {
-          name: {[ Op.iLike ]: `%${nameToUpperCase}%`}
+          name: {[ Op.iLike ]: `%${name}%`}
       },
       include: Activity
   })

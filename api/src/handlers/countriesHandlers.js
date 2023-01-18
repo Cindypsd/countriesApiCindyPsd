@@ -8,17 +8,17 @@ const getAllCountries = async (req, res) => {
 
 	try {
 		let result = name
-		? await searchCountryByName(name)
-		: await countries.map(country => {
-				return {
-					name: country.name,
-					flag: country.flag,
-					continet: country.continet,
-				};
-		  });
+			? await searchCountryByName(name)
+			: await countries.map(country => {
+					return {
+						name: country.name,
+						flag: country.flag,
+						continet: country.continet,
+					};
+			  });
 		res.status(200).json(result);
 	} catch (error) {
-		res.status(400).send({error: error.message});
+		res.status(400).send({ error: error.message });
 	}
 };
 
@@ -26,7 +26,10 @@ const getCountryById = async (req, res) => {
 	try {
 		const { id } = req.params;
 		const countryid = await Country.findByPk(id.toUpperCase(), {
-			include: Activity
+			include: {
+				model: Activity,
+				//attributes: ['name','level','season','duration']
+			},
 		});
 
 		!countryid &&
