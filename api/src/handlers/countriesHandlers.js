@@ -1,0 +1,46 @@
+const { searchCountryByName } = require('../controllers/countriesControllers');
+const { loadApiDataToDB } = require('../controllers/DBController');
+const { Country, Activity } = require('../db');
+
+const getAllCountries = async (req, res) => {
+	const { name } = req.query;
+	const countries = await loadApiDataToDB();
+
+	try {
+		let result = name
+		? await searchCountryByName(name)
+		: await countries.map(country => {
+				return {
+					name: country.name,
+					flag: country.flag,
+					continet: country.continet,
+				};
+		  });
+		res.status(200).json(result);
+	} catch (error) {
+		res.status(400).send({error: error.message});
+	}
+};
+
+const getCountryById = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const countryid = await Country.findByPk(id.toUpperCase(), {
+			include: Activity
+		});
+
+		!countryid &&
+			res
+				.status(400)
+				.json(`No existe un pais con el ID: -${id.toUpperCase()}-`);
+
+		return res.status(200).json(countryid);
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+};
+
+module.exports = {
+	getAllCountries,
+	getCountryById,
+};
