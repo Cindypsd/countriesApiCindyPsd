@@ -11,6 +11,7 @@ const getAllCountries = async (req, res) => {
 			? await searchCountryByName(name)
 			: await countries.map(country => {
 					return {
+						id: country.id,
 						name: country.name,
 						flag: country.flag,
 						continet: country.continet,
