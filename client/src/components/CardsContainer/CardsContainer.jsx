@@ -49,11 +49,14 @@ import style from "./CardsCointainer.module.css"
 
 export const CardsContainer = () => {
 	const countries = useSelector(state=>state.countries)
+  
   return (
     <div className={style.container}>
       {
         countries.map(country=>{
            return <Card
+              key={country.id}
+              id={country.id}
               name={country.name}
               flag={country.flag}
               continet ={country.continet}

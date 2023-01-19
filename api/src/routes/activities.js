@@ -9,6 +9,7 @@ const validate = (req,res,next)=>{
   next()
 }
 
+
 activitiesRouter.post('/', validate, postActivities )
 
 

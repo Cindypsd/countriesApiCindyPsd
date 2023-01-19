@@ -1,16 +1,25 @@
-import { GET_COUNTRIES } from "./actions";
+import { GET_COUNTRIES, GET_COUNTRY } from "./actions";
 
 const intialState = {
   countries: [],
-  activities: []
+  activities: [],
+  country:{}
 }
 
+
+//Reducer recibe -> ACTION & EDO INICIAL
+// crea un obj c/una copia d'estado + info de action ==> cambia el estado
  const rootReducer= (state = intialState, action) => {
   switch (action.type) {
     case GET_COUNTRIES:
       return {
         ...state,
         countries: action.payload
+      }
+    case GET_COUNTRY:
+      return{
+        ...state,
+        country: action.payload
       }
     default:
       return {...state};

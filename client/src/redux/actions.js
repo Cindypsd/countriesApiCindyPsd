@@ -3,6 +3,8 @@ import axios from "axios"
 export const GET_COUNTRIES = "GET_COUNTRIES"
 export const GET_COUNTRY ="GET_COUNTRY"
 
+
+//Actions dice QUE hace y con que INFO | dispatch para mandar cambios
 export const getCountries = () => {
   return async (dispatch) => {
     const DBdata = await axios.get(

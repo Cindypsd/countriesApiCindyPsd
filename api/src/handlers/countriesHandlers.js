@@ -4,8 +4,8 @@ const { Country, Activity } = require('../db');
 
 const getAllCountries = async (req, res) => {
 	const { name } = req.query;
+	
 	const countries = await loadApiDataToDB();
-
 	try {
 		let result = name
 			? await searchCountryByName(name)

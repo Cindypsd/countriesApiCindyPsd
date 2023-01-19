@@ -1,6 +1,9 @@
 const { Router } = require("express");
-const { getAllCountries, getCountryById, getCountryByName } = require('../handlers/countriesHandlers')
+const { loadApiDataToDB } = require("../controllers/DBController");
+const { getAllCountries, getCountryById} = require('../handlers/countriesHandlers')
 const countriesRouter = Router();
+
+
 
 
 countriesRouter.get('/', getAllCountries )
