@@ -9,7 +9,7 @@ const postActivities = async (req,res) => {
  
   try {
     const newActivity = await createActivity(name,level,duration,season,countryid);
-    res.status(200).json(newActivity);
+    res.status(201).json(newActivity);
   } catch (error) {
     res.status(400).json({error:error.message})
   }

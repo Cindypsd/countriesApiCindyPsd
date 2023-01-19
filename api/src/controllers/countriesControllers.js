@@ -9,7 +9,12 @@ const searchCountryByName = async (name) => {
       where: {
           name: {[ Op.iLike ]: `%${name}%`}
       },
-      include: Activity
+      include: {
+				model: Activity,
+				through:{
+					attributes:[],
+				}
+			},
   })
 
   if(!foundCountry.length) throw Error(`There is no country with the name: ${name.toUpperCase()}`)

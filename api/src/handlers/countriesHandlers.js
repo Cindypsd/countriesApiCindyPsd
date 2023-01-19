@@ -28,7 +28,9 @@ const getCountryById = async (req, res) => {
 		const countryid = await Country.findByPk(id.toUpperCase(), {
 			include: {
 				model: Activity,
-				//attributes: ['name','level','season','duration']
+				through:{
+					attributes:[],
+				}
 			},
 		});
 
