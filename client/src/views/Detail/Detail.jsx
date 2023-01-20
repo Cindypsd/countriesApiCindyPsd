@@ -21,9 +21,8 @@ import { getCountry } from '../../redux/actions'
 
 	 return (
 		 <div>
-      <h1>Esto es Detail</h1>
-
-      <h2>{country.name}</h2>
+  
+      <h1>{country.name}</h1>
       <img src={country.flag} alt={`${country.name} flag`} />
       <p>Continent: {country.continet}</p>
       <p>Subregin: {country.subregion}</p>
@@ -32,11 +31,9 @@ import { getCountry } from '../../redux/actions'
       <p>Population: {country.population} km2</p>
 
       <h2>Activities</h2>
-        {/* {
-          props.country.Activities.map(a=>
-              a.name
-            )
-        } */}
+        {
+          // Necesito entrar a las actividades bye
+        }
 
       <Link to="/home">
         <button>Return to Home</button>

@@ -1,70 +1,63 @@
+
+import { useState } from "react"
 import { useSelector } from "react-redux"
 import { Card } from "../Card/Card"
+import { PagingButtons } from "../PagingButtons/PagingButtons"
+
 import style from "./CardsCointainer.module.css"
-
-// const countries = [
-//   {
-// 		"name": "Poland",
-// 		"flag": "https://flagcdn.com/w320/pl.png",
-// 		"continet": "Europe"
-// 	},
-// 	{
-// 		"name": "Canada",
-// 		"flag": "https://flagcdn.com/w320/ca.png",
-// 		"continet": "Americas"
-// 	},
-// 	{
-// 		"name": "Cocos (Keeling) Islands",
-// 		"flag": "https://flagcdn.com/w320/cc.png",
-// 		"continet": "Oceania"
-// 	},
-// 	{
-// 		"name": "Bermuda",
-// 		"flag": "https://flagcdn.com/w320/bm.png",
-// 		"continet": "Americas"
-// 	},
-// 	{
-// 		"name": "Uganda",
-// 		"flag": "https://flagcdn.com/w320/ug.png",
-// 		"continet": "Africa"
-// 	},
-// 	{
-// 		"name": "French Polynesia",
-// 		"flag": "https://flagcdn.com/w320/pf.png",
-// 		"continet": "Oceania"
-// 	},
-// 	{
-// 		"name": "Bahamas",
-// 		"flag": "https://flagcdn.com/w320/bs.png",
-// 		"continet": "Americas"
-// 	},
-// 	{
-// 		"name": "Cape Verde",
-// 		"flag": "https://flagcdn.com/w320/cv.png",
-// 		"continet": "Africa"
-// 	},
-// ]
-
 
 
 export const CardsContainer = () => {
-	const countries = useSelector(state=>state.countries)
+	const countries =  useSelector(state=>state.countries) 
+
+  let countriesPerPage = 10 
+
+  // const [countriesDB, setCountriesDB] = useState(countries)               10
+  const [countriesData, setCountriesData] = useState([...countries].splice(10, countriesPerPage)) 
+  const [currentPage, setCurrentPage] = useState(0)
+
+  const nexHandler = () => {
+    const allCountries = countries.length; //100 paises
+    const nextPage = currentPage + 1; //2
+    const firstIndex = nextPage * countriesPerPage; // 2*10 // 10
+
+    if (firstIndex === allCountries) return;
+                                               
+    setCountriesData([...countries].splice(firstIndex, countriesPerPage))
+    setCurrentPage(nextPage)
+  }
+
+  const prevHandler = () => {
+    const prevPage = currentPage-1;
+
+    if(prevPage<0) return;
+    const firstIndex = prevPage * countriesPerPage;
+
+    setCountriesData([...countries].splice(firstIndex, countriesPerPage))
+    setCurrentPage(prevPage)
+  }
   
   return (
-    <div className={style.container}>
-      {
-        countries.map(country=>{
-           return <Card
-              key={country.id}
-              id={country.id}
-              name={country.name}
-              flag={country.flag}
-              continet ={country.continet}
-           />
-          })
-      
-      }
+    <div>
+      <div>
+        <PagingButtons nexHandler={nexHandler} currentPage={currentPage} prevHandler={prevHandler}/>
       </div>
+    
+     
+      <div className={style.container}>
+        {
+          countriesData.map(country=>{
+            return <Card
+                key={country.id}
+                id={country.id}
+                name={country.name}
+                flag={country.flag}
+                continet ={country.continet}
+            />
+            })
+        }
+      </div>
+    </div>
   )
 }
 
