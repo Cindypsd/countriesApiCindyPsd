@@ -1,0 +1,13 @@
+.container{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.container div{
+  display: flex;
+  gap:10px;
+}
+.container button{
+  width: 70px;
+}

@@ -1,11 +1,18 @@
 
+
+
 .container{
   display:grid;
   grid-template-columns: repeat(auto-fill, 240px);
-  gap: 26px;
   place-content: center;
+  gap: 80px;
+  margin: 50px 60px;
 }
 
-.container img{
-  width: 250px;
-}
+/* .container img{
+  width: 270px;
+  height: 160px;
+  object-fit: cover;
+} */
+
+

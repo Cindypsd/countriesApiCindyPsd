@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY } from "./actions";
+import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRY_BY_NAME } from "./actions";
 
 const intialState = {
   countries: [],
@@ -17,6 +17,11 @@ const intialState = {
         countries: action.payload
       }
     case GET_COUNTRY:
+      return{
+        ...state,
+        country: action.payload
+      }
+    case GET_COUNTRY_BY_NAME:
       return{
         ...state,
         country: action.payload

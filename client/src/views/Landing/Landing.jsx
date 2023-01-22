@@ -7,6 +7,9 @@ export const Landing = () => {
 
       <h2>Country API</h2>
 
+     <img src="../../images/2.jpg" alt="MI imagen que no se ve" />
+      <p>holaa</p>
+
       <Link to="/home">
         <button>INICIAR</button>
       </Link>

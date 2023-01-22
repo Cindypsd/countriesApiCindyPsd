@@ -9,11 +9,11 @@ export const Card = (props) => {
   
   return (
     <div className={style.container}>
-      <img src={props.flag} alt="Coutry Flag" />
       <Link to={`/detail/${props.id}`}>
-      <p>Name:{props.name}</p>
+        <img src={props.flag} alt="Coutry Flag" />
       </Link>
-      <p>Continet:{props.continet}</p>
+        <h2>{props.name}</h2>
+        <p><span>Continet:</span> {props.continet.toUpperCase()}</p>
     </div>
   )
 }

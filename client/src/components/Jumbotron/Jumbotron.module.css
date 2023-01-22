@@ -1,0 +1,13 @@
+.container {
+  align-self: center;
+  height: 400px;
+  width: 90%;
+  margin-top: 20px;
+  background-color: rgb(242, 214, 163);
+  border-radius: 15px;
+}
+
+.container h1{
+  font-size: 100px;
+}
+
