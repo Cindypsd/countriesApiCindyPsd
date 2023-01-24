@@ -3,19 +3,14 @@ import { Link } from 'react-router-dom'
 import axios from "axios"
 import {  useSelector } from 'react-redux';
 
-
+import style from './Form.module.css'
+import { validate } from '../../helpers/formValidations';
 
 
 export const Form = () => {
 
-
-
- const countries =  useSelector(state=>state.countries)
+  const countries =  useSelector(state=>state.countries)
   let countriesNames = countries.map(country=> {return {label: country.name , value: country.id}})
-  
-  // const [selected, setSelected] = useState([]);
-  // const [check, setCheck] = useState(false)
-  
 
   const [form, setForm] = useState({
     name:"",
@@ -25,7 +20,6 @@ export const Form = () => {
     countryid:""
   })
 
-  console.log(form)
 
   const [errors, setErrors] = useState({
     name:"",
@@ -36,27 +30,18 @@ export const Form = () => {
   })
 
   const changeHandler = (event) => {
-    const property = event.target.name //saber cual esta cambiando
+    const property = event.target.name 
     const value = event.target.value
 
-    validate({
+    setErrors(validate({
       ...form, 
-      [property ]: value})
+      [property ]: value}))
+
 
     setForm({
       ...form, 
       [property ]: value})
   }
-
-  
-
-
-  const validate = (form) => { 
-
-    form.name &&
-    form.name.length < 4 ? setErrors({...errors, name: "Add a name for the activity at leat 4 characters please"}):setErrors({...errors, name: ""})
-  }
-
 
 
   const submitHandler= (event) => {
@@ -66,19 +51,28 @@ export const Form = () => {
     .catch(err=>alert(err))
   }
 
+ 
+
+
   return (
-    <div>
+    <div className={style.container}>
+
+      
       <h1>Create an Activity</h1>
 
-        <form onSubmit={submitHandler}>
-          <div>
-          <label>*Name:</label>
-          <input type="text" value={form.name} onChange={changeHandler} name="name"/>
-          {errors.name && <span>{errors.name}</span>}
+        <form onSubmit={submitHandler} className={style.form}>
+         
+          <div className={style.inputName}>
+              <label htmlFor='name' >Name: </label>
+              <input type="text" value={form.name} onChange={changeHandler} name="name"/>
+              {errors.name && <p className={style.errorText}>{errors.name}</p>}
           </div>
 
-          <div>
-            <label>Level: </label>
+
+
+          
+          <div className={style.inputLevel}>
+            <label htmlFor='level'>Level: </label>
 
             <input type="radio" id='1' name='level' value='1' onChange={changeHandler} />
             <label htmlFor='1'>1</label>
@@ -94,16 +88,16 @@ export const Form = () => {
 
             <input type="radio" id='5' name='level' value='5' onChange={changeHandler}/>
             <label htmlFor='5'>5</label>
-
-
           </div>
+          {!form.level && <p className={style.errorSelectText}>Select a level</p>}
+            
 
 
-          <div>
+          <div className={style.inputSeason}>
             <label>Season: </label>
 
             <input type="radio" id='spring' name='season' value='spring' onChange={changeHandler} />
-            <label htmlFor='spring'>Spring</label>
+            <label htmlFor='spring'> Spring</label>
 
             <input type="radio" id='summer' name='season' value='summer' onChange={changeHandler}/>
             <label htmlFor='summer'>Summer</label>
@@ -113,59 +107,51 @@ export const Form = () => {
 
             <input type="radio" id='winter' name='season' value='winter' onChange={changeHandler}/>
             <label htmlFor='winter'>Winter</label>
-
           </div>
+            {!form.season && <p className={style.errorSelectText}>Select at season</p>}
 
 
-          <div>
-          <label>Duration</label>
-          <input type="text" value={form.duration} onChange={changeHandler} name="duration"/>
+          <div className={style.inputDuration}>
+            <label>Duration: </label>
+            <input type="number" value={form.duration} onChange={changeHandler} name="duration"/>
+            <span>minutes</span>
           </div>
+          {!form.duration && <p className={style.errorSelectText}>Pleas, tell us how long will it take</p>}
 
+        
+          <div className={style.inputCountry}>
+              <label>Countries: </label>
+              {/* <input type="text" value={form.countryid} onChange={changeHandler} name="countryid"/> */}
           
-
-          
-         <div>
-
-          <div>
-            <label>Countries</label>
-            <input type="text" value={form.countryid} onChange={changeHandler} name="countryid"/>
+              <select name="countryid" onChange={changeHandler}>
+                  <option >Select</option>
+                    { 
+                      countriesNames.map(country=>{
+                      return <option key={country.value} value={country.value}>{country.label}</option>
+                      })
+                    }
+              </select>
           </div>
+          {!form.countryid && <p className={style.errorSelectText}>Select at least one</p>}
 
-          <select name="countryid" onChange={changeHandler}>
-            <option >Select</option>
-            { 
-                countriesNames.map(country=>{
-                return <option key={country.value} value={country.value}>{country.label}</option>
-                })
-              }
-            </select>
-              <button type='text' >Add country</button>
 
-         </div>
-          
-
+          <div className={style.confirmForm}>
+              <h2>Please check the information</h2>
+              <p>Actividad: <span>{form.name}</span></p>
+              <p>Dificulty level: <span>{form.level}</span></p>
+              <p>Season: <span>{form.season}</span></p>
+              <p>Contries: <span>{form.countryid}</span></p>
+          </div>
+        
+        </form>
+        
+        <button type='submit'  className={!errors && style.submitButton }>Submit Activity</button>
 
       
-
-{/*           
-          <button type='submit' >Submit</button> */}
-          
-        </form>
-
-        {/* <button onClick={checkActivity}>Add activity</button> */}
-        <h3>Please cheack the information</h3>
-        <p>Actividad: {form.name}</p>
-        <p>Dificulty level: {form.level}</p>
-        <p>Season: {form.season}</p>
-        <p>Contries: {form.countryid}</p>
-{/* 
-        <input id="infocheck" type="checkbox" name="infocheck" onChange={handleChecked}/>
-        <label htmlFor='infocheck'>Yes, is ok</label> */}
-
       <Link to="/home">
         <button>Return to Home</button>
       </Link>
+
     </div>
   )
 }
