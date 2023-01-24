@@ -47,11 +47,9 @@ export const Form = () => {
   const submitHandler= (event) => {
     event.preventDefault()
     axios.post("http://localhost:3001/activities",form)
-    .then(res=>alert(res))
+    .then(res=>alert(res.data))
     .catch(err=>alert(err))
   }
-
- 
 
 
   return (
@@ -143,9 +141,9 @@ export const Form = () => {
               <p>Contries: <span>{form.countryid}</span></p>
           </div>
         
+          <button type='submit'>Submit Activity</button>
         </form>
-        
-        <button type='submit'  className={!errors && style.submitButton }>Submit Activity</button>
+                      {/*  className={!errors ? style.submitButton : style.noDisplay } */}
 
       
       <Link to="/home">

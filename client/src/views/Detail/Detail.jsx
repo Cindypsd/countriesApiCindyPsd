@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getCountry } from '../../redux/actions'
 
+import style from './Detail.module.css'
+
 
 
 
@@ -20,20 +22,45 @@ import { getCountry } from '../../redux/actions'
 	 
 
 	 return (
-		 <div>
+		 <div className={style.containerDetails}>
   
-      <h1>{country.name}</h1>
-      <img src={country.flag} alt={`${country.name} flag`} />
-      <p>Continent: {country.continet}</p>
-      <p>Subregin: {country.subregion}</p>
-      <p>Capital: {country.capital}</p>
-      <p>Area: {country.area} km2</p>
-      <p>Population: {country.population} km2</p>
-
+      <div className={style.titleFlag}>
+        <h1>{country.name}</h1>
+        <img src={country.flag} alt={`${country.name} flag`} />
+      </div>
+      
+      <div className={style.extraInfoBox}>
+        <p>Continent: {country.continet}</p>
+        <p>Subregin: {country.subregion}</p>
+        <p>Capital: {country.capital}</p>
+        <p>Area: {country.area} km2</p>
+        <p>Population: {country.population} km2</p>
+      </div>
+      
       <h2>Activities</h2>
-        {
-          // Necesito entrar a las actividades bye
-        }
+      <div className={style.activitiesCointainer}>
+          
+            {
+            
+              country.Activities && country.Activities.length === 0 ?  <p>There is no activities for this country YET, if you want you could add one  
+                <Link to="/create">
+                <span>HERE</span>
+                </Link>
+                </p>
+                : country.Activities && country.Activities.map(activity=>
+                  <div key={activity.id} className={style.activitiesBox}>
+                    <p>Activity: {activity.name}</p>
+                    <p>Level: {activity.level}</p>
+                    <p>Duration: {activity.duration} minutes</p>
+                    <p>Season: {activity.season}</p>
+
+                  </div>
+                )
+              
+                
+            }
+         
+      </div>
 
       <Link to="/home">
         <button>Return to Home</button>

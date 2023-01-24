@@ -1,0 +1,14 @@
+.activitiesCointainer{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, 240px);
+  place-content: center;
+  gap: 80px;
+  margin: 50px 60px;
+}
+
+.activitiesBox{
+  border:solid 4px rgb(137, 210, 110) ;
+  border-radius: 15px;
+  /* background-color: rgb(137, 210, 110); */
+  width: 300px;
+}

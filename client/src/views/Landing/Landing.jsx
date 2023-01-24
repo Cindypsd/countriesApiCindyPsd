@@ -10,7 +10,7 @@ export const Landing = () => {
 
       <div className={style.infoLanding}>
           <h1>Hi! </h1>
-          <h2>Are you ready to travel ?</h2>
+          <h2>Segundo title</h2>
           <p>Let's learn more about the contries around the world </p>
        
           <Link to="/home">
