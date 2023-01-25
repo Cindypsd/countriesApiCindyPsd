@@ -1,7 +1,11 @@
 :root{
-  --sm: 16px;
-  --md:18px;
-  --lg: 20px;
+  --text-input-field: #F7F7F7;
+  --ligth-green: #ACD9B2;
+  --ligth-green-two: #B6ECC5;
+  --green: #92E3A9;
+  --yellow: #fafa9c;
+  --alert: #FF7F76;
+  --error: #FF3300;
 }
 
 
@@ -30,7 +34,6 @@
   text-decoration: none;
 }
 .container h2{
-  color: rgb(173, 121, 18);
   margin: 5px;
 }
 
@@ -39,7 +42,7 @@
 .container p{
   font-weight: bold;
   font-size: var(--md);
-  color: var(--gray);
+  color: gray;
   margin: 0px;
 }
 

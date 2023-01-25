@@ -2,9 +2,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import {  useSelector } from 'react-redux';
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated';
 
 import style from './Form.module.css'
 import { validate } from '../../helpers/formValidations';
+
+
 
 
 export const Form = () => {
@@ -12,12 +16,14 @@ export const Form = () => {
   const countries =  useSelector(state=>state.countries)
   let countriesNames = countries.map(country=> {return {label: country.name , value: country.id}})
 
+
+
   const [form, setForm] = useState({
     name:"",
     level:"",
     season:"",
     duration:"",
-    countryid:""
+    countryid:[]
   })
 
 
@@ -43,14 +49,29 @@ export const Form = () => {
       [property ]: value})
   }
 
-
   const submitHandler= (event) => {
     event.preventDefault()
-    axios.post("http://localhost:3001/activities",form)
-    .then(res=>alert(res.data))
-    .catch(err=>alert(err))
+    try {
+      axios.post("http://localhost:3001/activities",form)
+      .then(res=>alert(res.data))
+      .catch(err=>alert(err))
+    } catch (error) {
+      console.log(error)
+    }
+
+
   }
 
+  const animatedComponents = makeAnimated();
+
+  const selectHandler = (value) => {
+    let selectedCountries = value.map(country => country.value)
+
+    setForm({
+      ...form,
+      countryid: selectedCountries
+    })
+  }
 
   return (
     <div className={style.container}>
@@ -118,33 +139,46 @@ export const Form = () => {
 
         
           <div className={style.inputCountry}>
-              <label>Countries: </label>
-              {/* <input type="text" value={form.countryid} onChange={changeHandler} name="countryid"/> */}
+              <label htmlFor='countryid'>Countries: </label>
           
-              <select name="countryid" onChange={changeHandler}>
+              {/* <select name="countryid" onChange={changeHandler}>
                   <option >Select</option>
                     { 
                       countriesNames.map(country=>{
                       return <option key={country.value} value={country.value}>{country.label}</option>
                       })
                     }
-              </select>
+              </select> */}
+            
+              <Select 
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  onChange={selectHandler}
+                  options={countriesNames} 
+                  name="countryid"
+              />
           </div>
-          {!form.countryid && <p className={style.errorSelectText}>Select at least one</p>}
+          {!form.countryid.length && <p className={style.errorSelectText}>Select at least one</p>}
 
+          
+         
 
           <div className={style.confirmForm}>
               <h2>Please check the information</h2>
               <p>Actividad: <span>{form.name}</span></p>
               <p>Dificulty level: <span>{form.level}</span></p>
               <p>Season: <span>{form.season}</span></p>
-              <p>Contries: <span>{form.countryid}</span></p>
+              <p>Contries: <span>{form.countryid.join(", ")}</span></p>
           </div>
-        
+                    
+
+                    {/*  className={!errors ? style.submitButton : style.noDisplay } */}
           <button type='submit'>Submit Activity</button>
         </form>
-                      {/*  className={!errors ? style.submitButton : style.noDisplay } */}
-
+                      
+      
+           
       
       <Link to="/home">
         <button>Return to Home</button>

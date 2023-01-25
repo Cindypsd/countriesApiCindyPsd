@@ -1,3 +1,14 @@
+:root{
+  --text-input-field: #F7F7F7;
+  --ligth-green: #ACD9B2;
+  --ligth-green-two: #B6ECC5;
+  --green: #92E3A9;
+  --yellow: #fafa9c;
+  --alert: #FF7F76;
+  --error: #FF3300;
+}
+
+
 .containerLanding{
   display: flex;
   justify-content: center;
@@ -19,4 +30,16 @@
 
 .infoLanding h1{
   font-size: 50px;
+}
+
+
+.containerLanding button{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  background-color: var(--yellow);
+  border: none;
+  border-radius: 15px;
+  font-size: 25px;
+  width: 200px;
+  height: 60px;
 }

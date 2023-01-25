@@ -26,6 +26,12 @@
   width: 430px;
   padding: 6px;
   margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.inputCountry{
+  display: flex;
+  width: 400px;
 }
 
 .inputDuration input{

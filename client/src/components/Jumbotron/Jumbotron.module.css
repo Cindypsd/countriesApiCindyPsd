@@ -1,9 +1,20 @@
+:root{
+  --text-input-field: #F7F7F7;
+  --ligth-green: #ACD9B2;
+  --ligth-green-two: #B6ECC5;
+  --green: #92E3A9;
+  --yellow: #fafa9c;
+  --alert: #FF7F76;
+  --error: #FF3300;
+}
+
+
 .container {
   align-self: center;
   height: 250px;
-  width: 90%;
+  width: 800px;
   margin-top: 20px;
-  background-color: rgb(232, 221, 236);
+  background-color: var(--ligth-green-two);
   border-radius: 15px;
 }
 
