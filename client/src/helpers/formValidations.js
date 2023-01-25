@@ -11,7 +11,11 @@ export const validate = (form) => {
 
 
     return errors
-  }
+}
+
+export const valideSubmit = (form) => {
+  //
+}
 
 
 

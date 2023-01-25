@@ -13,7 +13,7 @@ export const Card = (props) => {
         <img src={props.flag} alt="Coutry Flag" />
       </Link>
         <h2>{props.name}</h2>
-        <p><span>Continet:</span> {props.continet.toUpperCase()}</p>
+        <p><span>Continent:</span> {props.continet.toUpperCase()}</p>
     </div>
   )
 }

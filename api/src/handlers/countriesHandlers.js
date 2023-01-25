@@ -15,6 +15,7 @@ const getAllCountries = async (req, res) => {
 						name: country.name,
 						flag: country.flag,
 						continet: country.continet,
+						population: country.population
 					};
 			  });
 		res.status(200).json(result);

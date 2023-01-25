@@ -4,16 +4,19 @@
 .container{
   display: flex;
   flex-direction: column;
-  
+}
+
+.containerFilter{
+  display: flex;
+  justify-content: center;
 }
 
 .searchBar{
   align-self: flex-end;
-
   display: flex;
   align-items: center;
   justify-content: center;
- 
+  margin-left: 30px;
   padding-right: 10%;
 }
 

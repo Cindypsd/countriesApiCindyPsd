@@ -6,7 +6,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated';
 
 import style from './Form.module.css'
-import { validate } from '../../helpers/formValidations';
+import { validate, valideSubmit } from '../../helpers/formValidations';
 
 
 
@@ -15,8 +15,6 @@ export const Form = () => {
 
   const countries =  useSelector(state=>state.countries)
   let countriesNames = countries.map(country=> {return {label: country.name , value: country.id}})
-
-
 
   const [form, setForm] = useState({
     name:"",
@@ -35,6 +33,8 @@ export const Form = () => {
     countryid:""
   })
 
+  
+
   const changeHandler = (event) => {
     const property = event.target.name 
     const value = event.target.value
@@ -51,27 +51,30 @@ export const Form = () => {
 
   const submitHandler= (event) => {
     event.preventDefault()
-    try {
-      axios.post("http://localhost:3001/activities",form)
+    
+    valideSubmit(form)
+    axios.post("http://localhost:3001/activities",form)
       .then(res=>alert(res.data))
       .catch(err=>alert(err))
-    } catch (error) {
-      console.log(error)
-    }
-
 
   }
 
+
+
+  // Countries libreria
   const animatedComponents = makeAnimated();
 
   const selectHandler = (value) => {
     let selectedCountries = value.map(country => country.value)
-
+   
     setForm({
       ...form,
       countryid: selectedCountries
     })
   }
+
+  
+
 
   return (
     <div className={style.container}>
@@ -140,6 +143,7 @@ export const Form = () => {
         
           <div className={style.inputCountry}>
               <label htmlFor='countryid'>Countries: </label>
+              
           
               {/* <select name="countryid" onChange={changeHandler}>
                   <option >Select</option>
@@ -150,14 +154,16 @@ export const Form = () => {
                     }
               </select> */}
             
-              <Select 
-                  closeMenuOnSelect={false}
-                  components={animatedComponents}
-                  isMulti
-                  onChange={selectHandler}
-                  options={countriesNames} 
-                  name="countryid"
-              />
+                <Select 
+                    closeMenuOnSelect={false}
+                    components={animatedComponents}
+                    isMulti
+                    onChange={selectHandler}
+                    options={countriesNames} 
+                    name="countryid"
+                />
+
+
           </div>
           {!form.countryid.length && <p className={style.errorSelectText}>Select at least one</p>}
 
@@ -174,7 +180,11 @@ export const Form = () => {
                     
 
                     {/*  className={!errors ? style.submitButton : style.noDisplay } */}
+          
+          
           <button type='submit'>Submit Activity</button>
+        
+        
         </form>
                       
       
