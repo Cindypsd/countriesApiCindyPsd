@@ -27,11 +27,11 @@ export const getCountry = (id) => {
 }
 
 export const getCountryByName = (name) => {
-  return async (dispatch) => {
-    const DBdata = await axios.get(
-      `http://localhost:3001/countries?name=${name}`
-    )
-    const country = DBdata.data;
-    dispatch({type: GET_COUNTRY_BY_NAME, payload: country})
-  }
+    return async (dispatch) => {
+      const DBdata = await axios.get(
+        `http://localhost:3001/countries?name=${name}`
+      )
+      const country = DBdata.data;
+      dispatch({type: GET_COUNTRY_BY_NAME, payload: country})
+    }
 }

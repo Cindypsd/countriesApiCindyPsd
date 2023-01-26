@@ -3,15 +3,18 @@ import { useSelector } from "react-redux"
 import { getCountriesAlphabetically, getCountriesbyContinent, getCountriesbyPopulation } from "../../helpers/filters"
 
 import { Card } from "../Card/Card"
-import { Pagination } from "../Pagination/Pagination"
 
 import style from "./CardsCointainer.module.css"
 
 
 
 export const CardsContainer = () => {
-	const countriesDB =  useSelector(state=>state.countries) 
-	const country =  useSelector(state=>state.country)
+	const countriesDB =  useSelector(state=>state.countries)
+  const searchedResults =  useSelector(state=>state.country) 
+
+  // ^hay que meterlo a un estado local para que detecte el cambio
+
+ 
 
   const [filter, setFilter] = useState({
     continent: "All",
@@ -26,12 +29,15 @@ export const CardsContainer = () => {
     setFilter({
       ...filter, 
       [property ]: value})
-   
   }
+
  
 
-  let dataToFilter = !country.length ? getCountriesbyContinent(countriesDB, filter.continent) : country
-                  
+
+  let dataToFilter =  getCountriesbyContinent(countriesDB, filter.continent)
+  if (searchedResults.length >= 1) {dataToFilter = searchedResults}else{dataToFilter=  getCountriesbyContinent(countriesDB, filter.continent)}
+  
+
   let alphabetically =  getCountriesAlphabetically(dataToFilter.slice(0,250), filter.order)        
   let byPopulation = getCountriesbyPopulation(dataToFilter, filter.order)
 
@@ -68,11 +74,11 @@ export const CardsContainer = () => {
           </form>
         </div>
 
-     
+
 
       <div className={style.container}>
         {  
-          
+           
             filter.orderBy === 'alphabetically' ?
             alphabetically.map(country=>{
               return <Card
@@ -92,16 +98,18 @@ export const CardsContainer = () => {
                   continet ={country.continet}
               />
             })
-              // country && country.map(country=>{
+            
+              //   country && country.map(country=>{
               // return <Card
               //     key={country.id}
               //     id={country.id}
               //     name={country.name}
               //     flag={country.flag}
               //     continet ={country.continet}
-              // />
-              // })
+              //   />})
         }
+           
+        
       </div>
 
     </div>
