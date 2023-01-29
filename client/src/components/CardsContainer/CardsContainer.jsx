@@ -45,6 +45,9 @@ export const CardsContainer = () => {
 
   return (
     <div>
+       
+
+
         <div className={style.filterBar}>
           <form>
             <label htmlFor='continent'>Filter by Contintet </label>
@@ -99,14 +102,6 @@ export const CardsContainer = () => {
               />
             })
             
-              //   country && country.map(country=>{
-              // return <Card
-              //     key={country.id}
-              //     id={country.id}
-              //     name={country.name}
-              //     flag={country.flag}
-              //     continet ={country.continet}
-              //   />})
         }
            
         

@@ -1,3 +1,13 @@
+:root{
+  --text-input-field: #F7F7F7;
+  --ligth-green: #ACD9B2;
+  --ligth-green-two: #B6ECC5;
+  --green: #92E3A9;
+  --yellow: #fafa9c;
+  --alert: #FF7F76;
+  --error: #FF3300;
+}
+
 .container{
   display: grid;
   place-items: center;
@@ -7,10 +17,10 @@
 .form{
   display: grid;
   place-items: flex-start; 
-  background-color:  rgb(229, 231, 179);
+  background-color:  var(--ligth-green);
   border-radius: 15px;
-  width: 600px;
-  padding: 50px;
+  width: 400px;
+  padding: 40px;
 }
 
 .form label {
@@ -19,14 +29,24 @@
   margin-right: 6px;
 }
 
-.inputName input , .inputCountry input{
+.inputName input {
   border: none;
   border-radius: 8px;
   height: 30px;
-  width: 430px;
+  width: 320px;
   padding: 6px;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.inputCountry select {
+  border: none;
+  border-radius: 8px;
+  height: 37px;
+  width: 310px;
+  padding: 6px;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .inputCountry{
@@ -34,25 +54,35 @@
   width: 400px;
 }
 
+.selectedContainer{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
 .inputDuration input{
   font-size: 20px ;
   border: none;
   border-radius: 8px;
-  height: 30px;
-  width: 50px;
+  height: 25px;
+  width: 40px;
   padding: 6px;
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 .inputLevel input , .inputSeason input{
-  width: 20px;
+  width: 18px;
   height: 20px;
   margin: 15px;
 }
 
 .inputLevel label , .inputSeason label{
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.secondLineSeason{
+  margin-left: 35px;
 }
 
 .confirmForm{
@@ -71,16 +101,44 @@
 
 .errorSelectText{
   margin: 3px;
-  margin-left: 25px;
-  margin-bottom: 25px;
+  margin-left: 60px;
   color: rgb(215, 104, 25);
   justify-content: flex-start;
 }
 
-.submitButton{
-  display: block;
+.confirmButton{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  
+  place-self: center;
+  padding: 10px;
+  width: 200px;
+  margin-top: 20px;
+
+  background-color: var(--alert);
+  box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  border-radius: 50px;
 }
 
-.noDisplay{
-  display: none;
+.submitButton{
+  
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  
+  place-self: center;
+  height: 50px;
+  width: 200px;
+  margin-top: 20px;
+
+  background-color: var(--yellow);
+  box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  border: none;
+  border-radius: 50px;
+
 }
+
+
