@@ -78,12 +78,10 @@ export const Form = () => {
 
   const validateForm = () => {
     (form.name && form.countryid.length >=1 && form.duration && form.season) ? setFormCompleted(true) :
-    setErrors({...errors, formCompleted: 'Please complete the information before submit' })
+    setErrors({...errors, formCompleted: 'Oh Oh! It seems that we are missing information, please complete before submit' })
   
   }
  
-  console.log(errors)
-
 
 
   return (
@@ -91,7 +89,7 @@ export const Form = () => {
 
       
       <h1>Create an Activity</h1>
-    {/* onSubmit={submitHandler} */}
+
         <form onSubmit={submitHandler} className={style.form}>
          
           <div className={style.inputName}>
@@ -133,7 +131,7 @@ export const Form = () => {
           <div className={style.inputDuration}>
             <label>Duration: </label>
             <input type="number" value={form.duration} onChange={changeHandler} name="duration"/>
-            <span>minutes</span>
+            <span>hours</span>
           </div>
           {!form.duration && <p className={style.errorSelectText}>Please, tell us how long will it take</p>}
 
@@ -188,11 +186,12 @@ export const Form = () => {
          
 
           <div className={style.confirmForm}>
-              <h2>Please check the information</h2>
+              <h3>Please check the information</h3>
               <p>Actividad: <span>{form.name}</span></p>
-              <p>Dificulty level: <span>{form.level}</span></p>
-              <p>Season: <span>{form.season}</span></p>
               <p>Contries: <span>{form.countryid.join(", ")}</span></p>
+              <p>Duration: <span>{form.duration} hours</span></p>
+              <p>Level of dificulty: <span>{form.level}</span></p>
+              <p>Season: <span>{form.season}</span></p>
           </div>
           
           

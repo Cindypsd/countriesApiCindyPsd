@@ -25,8 +25,8 @@ import style from './Detail.module.css'
 		 <div className={style.containerDetails}>
   
       <div className={style.titleFlag}>
-        <h1>{country.name}</h1>
         <img src={country.flag} alt={`${country.name} flag`} />
+        <h1>{country.name}</h1>
       </div>
       
       <div className={style.extraInfoBox}>
@@ -37,12 +37,12 @@ import style from './Detail.module.css'
         <p>Population: {country.population} km2</p>
       </div>
       
-      <h2>Activities</h2>
       <div className={style.activitiesCointainer}>
+      <h2>Activities</h2>
           
             {
             
-              country.Activities && country.Activities.length === 0 ?  <p>There is no activities for this country YET, if you want you could add one  
+              country.Activities && country.Activities.length === 0 ?  <p className={style.messageActivities}>There is no activities for this country YET, if you want you could add one  
                 <Link to="/create">
                 <span>HERE</span>
                 </Link>
