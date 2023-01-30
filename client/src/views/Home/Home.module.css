@@ -1,3 +1,12 @@
+:root{
+  --text-input-field: #F7F7F7;
+  --ligth-green: #ACD9B2;
+  --ligth-green-two: #B6ECC5;
+  --green: #92E3A9;
+  --yellow: #fafa9c;
+  --alert: #FF7F76;
+  --error: #FF3300;
+}
 
 
 
@@ -32,4 +41,8 @@
   box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
   -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
   -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+}
+
+.searchBar input:focus{
+  background-color: var(--ligth-green-two);
 }

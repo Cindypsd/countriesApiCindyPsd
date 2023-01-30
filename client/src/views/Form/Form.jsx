@@ -81,20 +81,22 @@ export const Form = () => {
     setErrors({...errors, formCompleted: 'Oh Oh! It seems that we are missing information, please complete before submit' })
   
   }
+
+  
  
 
 
   return (
     <div className={style.container}>
 
-      
+      <div className={style.formContainer}>
       <h1>Create an Activity</h1>
 
         <form onSubmit={submitHandler} className={style.form}>
          
           <div className={style.inputName}>
               <label htmlFor='name' >Name: </label>
-              <input type="text" value={form.name} onChange={changeHandler} name="name"/>
+              <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder='Activity name...'/>
               {errors.name && <p className={style.errorText}>{errors.name}</p>}
           </div>
 
@@ -155,7 +157,7 @@ export const Form = () => {
             <input type="radio" id='5' name='level' value='5' onChange={changeHandler}/>
             <label htmlFor='5'>5</label>
           </div>
-          {!form.level && <p className={style.errorSelectText}>Select a level</p>}
+          {!form.level && <p className={style.errorSelectText}>Select a level of dificulty </p>}
             
 
 
@@ -183,16 +185,7 @@ export const Form = () => {
         
         
       
-         
-
-          <div className={style.confirmForm}>
-              <h3>Please check the information</h3>
-              <p>Actividad: <span>{form.name}</span></p>
-              <p>Contries: <span>{form.countryid.join(", ")}</span></p>
-              <p>Duration: <span>{form.duration} hours</span></p>
-              <p>Level of dificulty: <span>{form.level}</span></p>
-              <p>Season: <span>{form.season}</span></p>
-          </div>
+  
           
           
           <p className={style.confirmButton} onClick={validateForm}>The information is OK</p>
@@ -202,13 +195,31 @@ export const Form = () => {
         
         
         </form>
+          <Link to="/home">
+            <button className={style.returnButton}>Return to Home</button>
+          </Link>
+
+        </div>
+
+        <div className={style.confirmForm}>
+              <h3>Please, check the information before you submit✨👀</h3>
+              <p>Activity: <span>{form.name}</span></p>
+              <p>Countries: <span>{form.countryid.join(", ")}</span></p>
+              <p>Duration: <span>{form.duration} hours</span></p>
+              <p>Level of dificulty: <span>{form.level}</span></p>
+              <p>Season:
+                <span>
+                  {form.season === 'fall' && '🍂 Fall'}
+                  {form.season === 'spring' && '🌻 Spring'}
+                  {form.season === 'winter' && '❄️ Winter'}
+                  {form.season === 'summer' && '🏖 Summer'}
+                </span></p>
+        </div>
                       
       
            
       
-      <Link to="/home">
-        <button>Return to Home</button>
-      </Link>
+     
 
     </div>
   )

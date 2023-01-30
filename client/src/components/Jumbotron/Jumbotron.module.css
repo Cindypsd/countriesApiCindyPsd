@@ -14,7 +14,7 @@
   height: 250px;
   width: 800px;
   margin-top: 20px;
-  background-color: var(--ligth-green-two);
+  /* background-color: var(--ligth-green-two); */
   border-radius: 15px;
 }
 

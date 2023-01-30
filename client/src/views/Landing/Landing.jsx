@@ -6,12 +6,12 @@ export const Landing = () => {
   return (
     <div className={style.containerLanding}> 
       
-      <img src={require('../../images/landing_world.png')} alt="MI imagen que no se ve" />
+      <img src={require('../../images/landing_world.png')} alt="World map" />
 
       <div className={style.infoLanding}>
-          <h1>Hi! </h1>
-          <h2>Segundo title</h2>
-          <p>Let's learn more about the contries around the world </p>
+          <h1>Welcome</h1>
+          <h1>to the Contries API</h1>
+          <p>Here you can learn more about countries around the world </p>
        
           <Link to="/home">
             <button>Let's Start !</button>

@@ -6,7 +6,7 @@ const loadApiDataToDB = async() => {
   try {
     const api = await axios.get("https://restcountries.com/v3/all")
     
-    let apiInformation = [];
+    
     apiInformation = await Country.findAll();
 
     if (apiInformation.length) return apiInformation

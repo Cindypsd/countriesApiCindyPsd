@@ -14,6 +14,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   cursor: url(/src/images/cursor.png), pointer;
   background-color: azure;
+  background-image: url(/src/images/fondo_notebook.png);
 }
 
 code {
