@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 import { getCountriesAlphabetically, getCountriesbyContinent, getCountriesbyPopulation } from "../../helpers/filters"
 
 import { Card } from "../Card/Card"
-import { Pagination } from "../Pagination/Pagination"
 
 import style from "./CardsCointainer.module.css"
 
@@ -21,27 +20,25 @@ export const CardsContainer = (props) => {
   })
 
 
-
-
   //PAGINATION
   
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [page,setPage]= useState(1)
 
-  const dataPerPage =  countriesDB.slice(currentPage, currentPage+10) 
+  const dataPerPage =  countriesDB.slice(currentIndex, currentIndex+10) 
 
 
-  let dataToOrder = filter.continent === 'All' ? getCountriesbyContinent(dataPerPage , filter.continent) : getCountriesbyContinent(countriesDB , filter.continent).slice(currentPage, currentPage+10)
+  let dataToOrder = filter.continent === 'All' ? getCountriesbyContinent(dataPerPage , filter.continent) : getCountriesbyContinent(countriesDB , filter.continent).slice(currentIndex, currentIndex+10)
 
  
   const nextHandler = () => {
-    setCurrentPage( currentPage + 10 )
+    setCurrentIndex( currentIndex + 10 )
     setPage(page+1)
   }
 
   const prevHandler = () => {
-    currentPage > 0 && setCurrentPage( currentPage - 10 )
-    currentPage > 2 && setPage(page-1)
+    currentIndex > 0 && setCurrentIndex( currentIndex - 10 )
+    currentIndex > 2 && setPage(page-1)
   }
 
   const numberOfPages =[];
@@ -50,6 +47,11 @@ export const CardsContainer = (props) => {
 
   for (let i = 1; i < Math.ceil(dataSize/10); i++) {
     numberOfPages.push(i) 
+  }
+
+  const pageSelectionHandler = (number) => {
+    setPage(number)
+    setCurrentIndex(number*10)
   }
   //////////////
 
@@ -60,7 +62,7 @@ export const CardsContainer = (props) => {
   let byPopulation = getCountriesbyPopulation(dataToOrder, filter.order)
 
   const changeHandler = (event) => {
-    setCurrentPage(0)
+    setCurrentIndex(0)
     setPage(1)
     const property = event.target.name 
     const value = event.target.value
@@ -69,10 +71,7 @@ export const CardsContainer = (props) => {
       [property ]: value})
   }
 
-  const pageSelectionHandler = (number) => {
-    setPage(number)
-    setCurrentPage(number*10)
-  }
+
 
 
   return (
@@ -109,7 +108,11 @@ export const CardsContainer = (props) => {
         </div>
 
         <div className={style.pagination}>
-          <button onClick={prevHandler} disabled={page === 1 ? true:false}>prev</button>
+          <button 
+            onClick={prevHandler} disabled={page === 1 ? true:false}
+            className={style.arrowsPagination}
+            >←
+          </button>
             {
                 numberOfPages.map(number => 
                   <button 
@@ -121,7 +124,12 @@ export const CardsContainer = (props) => {
                   </button>
                 )
             }
-          <button disabled={page === numberOfPages.length || !numberOfPages.length ? true:false} onClick={nextHandler}>next</button>
+          <button 
+            disabled={page === numberOfPages.length || !numberOfPages.length ? true:false} 
+            onClick={nextHandler}
+            className={style.arrowsPagination}
+            > → 
+          </button>
        </div>
 
 

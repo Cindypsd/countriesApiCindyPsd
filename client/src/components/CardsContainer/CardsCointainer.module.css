@@ -1,3 +1,14 @@
+:root{
+  --text-input-field: #F7F7F7;
+  --ligth-green: #ACD9B2;
+  --ligth-green-two: #B6ECC5;
+  --green: #92E3A9;
+  --yellow: #fafa9c;
+  --alert: #FF7F76;
+  --error: #FF3300;
+}
+
+
 .container{
   display: flex;
   flex-direction: column;
@@ -18,6 +29,18 @@
   gap: 20px;
 }
 
+.arrowsPagination{
+  border: none;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.arrowsPagination:hover{
+  background-color: var(--green);
+  border-radius: 8px;
+  transform: scale(1.15);
+}
+
 .pageNumber{
   background-color: #dcdada ;
   width: 30px;
@@ -29,10 +52,17 @@
   -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
 }
 
+.pageNumber:hover{
+  transform: scale(1.15);
+  background-color: var(--ligth-green-two);
+  
+}
 .pageNumberActive{
-  background-color: #eadc8c ;
-  width: 30px;
-  height: 30px;
+  background-color: var(--yellow);
+  transform: scale(1.15);
+  font-weight: bold;
+  width: 35px;
+  height: 33px;
   border-radius: 50%;
   border: none;
   box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
