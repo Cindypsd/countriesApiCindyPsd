@@ -27,7 +27,7 @@ describe('Prueba de filtros y ordenamientos', () => {
 		},
 	];
 
-	test('should getCountriesAlphabetically debe ordenar A-Z', () => {
+	test('getCountriesAlphabetically debe ordenar A-Z', () => {
 		const orderAZ = getCountriesAlphabetically(countriesdata, 'ASC');
 
 		expect(orderAZ).toStrictEqual([
@@ -54,7 +54,7 @@ describe('Prueba de filtros y ordenamientos', () => {
 		]);
 	});
 
-	test('should getCountriesAlphabetically debe ordenar Z-A', () => {
+	test('getCountriesAlphabetically debe ordenar Z-A', () => {
 		const orderZA = getCountriesAlphabetically(countriesdata, 'DES');
 
 		expect(orderZA).toStrictEqual([

@@ -12,7 +12,6 @@ import { MultipleSelectionBox } from '../../components/MultipleSelectionBox/Mult
 
 
 export const Form = () => {
-
   const countries =  useSelector(state=>state.countries)
   let countriesNames = countries.map(country=> {return {label: country.name , value: country.id}})
 
@@ -55,11 +54,15 @@ export const Form = () => {
  
 
   const selectHandler = (event) => {
+    if (form.countryid.includes(event.target.value)) return;
     setForm({...form, countryid: [...form.countryid, event.target.value ]} )
   }
 
+  
 
-
+  const  onDeletee = (country) => {
+    setForm({...form, countryid: form.countryid.filter(c=> c !== country) } )
+  }
 
   const submitHandler= (event) => {
     event.preventDefault()
@@ -71,9 +74,7 @@ export const Form = () => {
   }
 
  
-  const  onDeletee = (country) => {
-    setForm({...form, countryid: form.countryid.filter(c=> c !== country) } )
-  }
+ 
  
 
   const validateForm = () => {
@@ -96,7 +97,7 @@ export const Form = () => {
          
           <div className={style.inputName}>
               <label htmlFor='name' >Name: </label>
-              <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder='Activity name...'/>
+              <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder='Activity name...' maxLength="30"/>
               {errors.name && <p className={style.errorText}>{errors.name}</p>}
           </div>
 
@@ -104,7 +105,7 @@ export const Form = () => {
           <div className={style.inputCountry}>
               <label htmlFor='countryid'>Countries: </label>
               
-              <select name="countryid" onChange={selectHandler}>
+              <select name="countryid" onChange={selectHandler} >
                   <option >Select</option>
                     { 
                       countriesNames.map(country=>{
@@ -132,7 +133,7 @@ export const Form = () => {
 
           <div className={style.inputDuration}>
             <label>Duration: </label>
-            <input type="number" value={form.duration} onChange={changeHandler} name="duration"/>
+            <input type="number" value={form.duration} onChange={changeHandler} name="duration" min="1" max="24"/>
             <span>hours</span>
           </div>
           {!form.duration && <p className={style.errorSelectText}>Please, tell us how long will it take</p>}

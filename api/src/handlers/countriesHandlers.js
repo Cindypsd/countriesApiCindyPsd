@@ -4,7 +4,7 @@ const { Country, Activity } = require('../db');
 
 const getAllCountries = async (req, res) => {
 	const { name } = req.query;
-	
+
 	const countries = await loadApiDataToDB();
 	try {
 		let result = name
@@ -15,7 +15,7 @@ const getAllCountries = async (req, res) => {
 						name: country.name,
 						flag: country.flag,
 						continet: country.continet,
-						population: country.population
+						population: country.population,
 					};
 			  });
 		res.status(200).json(result);
@@ -24,16 +24,15 @@ const getAllCountries = async (req, res) => {
 	}
 };
 
-
 const getCountryById = async (req, res) => {
 	try {
 		const { id } = req.params;
 		const countryid = await Country.findByPk(id.toUpperCase(), {
 			include: {
 				model: Activity,
-				through:{
-					attributes:[],
-				}
+				through: {
+					attributes: [],
+				},
 			},
 		});
 
@@ -44,7 +43,7 @@ const getCountryById = async (req, res) => {
 
 		return res.status(200).json(countryid);
 	} catch (error) {
-		res.status(400).json({ error: error.message });
+		return res.status(400).json({ error: error.message });
 	}
 };
 

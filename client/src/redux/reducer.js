@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRIES_BY_CONTINENT, GET_COUNTRY, GET_COUNTRY_BY_NAME } from "./actions";
+import { GET_COUNTRIES, GET_COUNTRY, GET_COUNTRY_BY_NAME } from "./actions";
 
 const intialState = {
   countries: [],

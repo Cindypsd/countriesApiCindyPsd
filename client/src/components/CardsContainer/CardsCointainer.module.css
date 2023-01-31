@@ -1,5 +1,9 @@
-
 .container{
+  display: flex;
+  flex-direction: column;
+
+}
+.containerCards{
   display:grid;
   grid-template-columns: repeat(auto-fill, 240px);
   place-content: center;
@@ -7,6 +11,34 @@
   margin: 50px 60px;
 }
 
+.pagination{
+  display: flex;
+  align-self: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.pageNumber{
+  background-color: #dcdada ;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+}
+
+.pageNumberActive{
+  background-color: #eadc8c ;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+}
 
 .filterBar{
   margin-top: 30px;

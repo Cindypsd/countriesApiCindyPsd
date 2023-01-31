@@ -9,6 +9,7 @@ export const Pagination = ({countriesPerPage, totalCountries , paginate}) => {
     pageNumbers.push(i) 
   }
 
+
   return (
     <nav className={style.cointainerPagination}>
      

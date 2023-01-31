@@ -46,3 +46,20 @@
 .searchBar input:focus{
   background-color: var(--ligth-green-two);
 }
+
+.paginationButton{
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  
+  place-self: center;
+  padding: 10px;
+  width: 80px;
+  margin: 10px;
+
+  background-color: var(--alert);
+  box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
+  border-radius: 50px;
+  border: none;
+}
