@@ -32,7 +32,6 @@ import style from './Detail.module.css'
       
       
       <div className={style.continent}>
-          <p>Continent:</p>
           <h2>{country.continet}</h2>
           {country.continet === 'Americas' && <img src={require('../../images/americasMap.png')} alt="America Map" />}
           {country.continet === 'Africa' && <img src={require('../../images/africaMap.png')} alt="Africa Map" />}
@@ -70,15 +69,18 @@ import style from './Detail.module.css'
       </div>
       
       <div className={style.activitiesCointainer}>
-        <h2>Activities</h2>
+        <h2>Activities ↓</h2>
 
         <div className={style.buttonsContainer}>
-          <button > All</button>
-          <button>🍂 Fall</button>
-          <button>🌻 Spring</button>
-          <button>❄️ Winter</button>
-          <button>🏖 Summer</button>
+           <button > All</button>
+           <button>🍂 Fall</button>
+           <button>🌻 Spring</button>
+           <button>❄️ Winter</button>
+           <button>🏖 Summer</button>
         </div>
+        
+
+        
 
           <div className={style.listActivities}>
             {

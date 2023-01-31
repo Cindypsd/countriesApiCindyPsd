@@ -11,7 +11,7 @@ export const Landing = () => {
       <div className={style.infoLanding}>
           <h1>Welcome</h1>
           <h1>to the Contries API</h1>
-          <p>Here you can learn more about countries around the world </p>
+          <p>Here you can learn more about the countries of the world </p>
        
           <Link to="/home">
             <button>Let's Start !</button>

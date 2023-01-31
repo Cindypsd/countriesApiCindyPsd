@@ -3,6 +3,7 @@ import axios from "axios"
 export const GET_COUNTRIES = "GET_COUNTRIES"
 export const GET_COUNTRY ="GET_COUNTRY"
 export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME"
+// export const GET_COUNTRIES_BY_CONTINENT = "GET_COUNTRIES_BY_CONTINENT"
 
 
 //Actions dice QUE hace y con que INFO | dispatch para mandar cambios
@@ -35,3 +36,7 @@ export const getCountryByName = (name) => {
       dispatch({type: GET_COUNTRY_BY_NAME, payload: country})
     }
 }
+
+// export const getCountriesByContinent = () => {
+//   return { type: GET_COUNTRIES_BY_CONTINENT , payload:  }
+// }

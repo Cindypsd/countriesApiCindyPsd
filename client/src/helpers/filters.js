@@ -1,5 +1,4 @@
 
-
 export const getCountriesAlphabetically = (countriesdata, order) => {
   if(order === "ASC") return countriesdata.sort((a,b)=>{
     if (a.name>b.name) return 1
