@@ -8,8 +8,6 @@
   --error: #FF3300;
 }
 
-
-
 .container{
   display: flex;
   flex-direction: column;
@@ -27,6 +25,7 @@
   justify-content: center;
   margin-left: 30px;
   padding-right: 10%;
+  gap: 10px;
 }
 
 .searchBar input {
@@ -44,22 +43,19 @@
 }
 
 .searchBar input:focus{
-  background-color: var(--ligth-green-two);
+  border: solid 4px var(--green);
 }
 
-.paginationButton{
-  font-family: 'Quicksand', sans-serif;
-  font-size: 18px;
-  
-  place-self: center;
-  padding: 10px;
-  width: 80px;
-  margin: 10px;
-
-  background-color: var(--alert);
+.searchButton {
+  border:none;
+  border-radius: 5px;
   box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
   -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
   -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
-  border-radius: 50px;
-  border: none;
 }
+
+.searchButton:hover{
+  transform: scale(1.15);
+  background-color: var(--yellow);
+}
+

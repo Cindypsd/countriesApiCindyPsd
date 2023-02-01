@@ -97,7 +97,7 @@ export const Form = () => {
          
           <div className={style.inputName}>
               <label htmlFor='name' >Name: </label>
-              <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder='Activity name...' maxLength="30"/>
+              <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder='Activity name...' maxLength="30" autoComplete='off'/>
               {errors.name && <p className={style.errorText}>{errors.name}</p>}
           </div>
 

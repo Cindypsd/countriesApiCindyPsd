@@ -26,10 +26,7 @@ const intialState = {
         ...state,
         country: action.payload
       }
-    // case GET_COUNTRIES_BY_CONTINENT:
-    //   return {
 
-    //   }
     
     default:
       return {...state};

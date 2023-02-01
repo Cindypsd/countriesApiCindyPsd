@@ -71,13 +71,13 @@ import style from './Detail.module.css'
       <div className={style.activitiesCointainer}>
         <h2>Activities ↓</h2>
 
-        <div className={style.buttonsContainer}>
+        {/* <div className={style.buttonsContainer}>
            <button > All</button>
            <button>🍂 Fall</button>
            <button>🌻 Spring</button>
            <button>❄️ Winter</button>
            <button>🏖 Summer</button>
-        </div>
+        </div> */}
         
 
         

@@ -17,8 +17,6 @@ const searchCountryByName = async (name) => {
 			},
   })
 
-  if(!foundCountry.length) throw Error(`There is no country with the name: ${name.toUpperCase()}`)
-  
   return foundCountry
 }
 

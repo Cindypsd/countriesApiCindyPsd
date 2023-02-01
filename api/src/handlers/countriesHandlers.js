@@ -20,9 +20,10 @@ const getAllCountries = async (req, res) => {
 			  });
 		res.status(200).json(result);
 	} catch (error) {
-		res.status(400).send({ error: error.message });
+		res.status(400).send(error);
 	}
 };
+
 
 const getCountryById = async (req, res) => {
 	try {
