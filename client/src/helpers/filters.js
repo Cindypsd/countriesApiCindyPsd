@@ -20,7 +20,7 @@ export const getCountriesAlphabetically = (countriesdata, order) => {
 }
 
 
-
+                                          
 export const getCountriesbyContinent = (countriesdata, continent)=>{
      if(continent === 'All') return countriesdata
     return countriesdata.filter(country => country.continet === continent)

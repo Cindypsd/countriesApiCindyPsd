@@ -19,7 +19,9 @@ import style from './Detail.module.css'
   useEffect(() => {
     dispatch(getCountry(id))
   }, [dispatch,id])
-	 
+
+  
+
 
 	 return (
     <>
@@ -105,9 +107,7 @@ import style from './Detail.module.css'
                     </span></p>
 
                   </div>
-                )
-              
-                
+                )    
             }
         </div>
       </div>

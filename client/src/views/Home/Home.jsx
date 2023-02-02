@@ -27,6 +27,7 @@ export const Home = (props) => {
   
     
     const handleClick= () => {
+      if(!searchedCountry.length) return window.alert('Write the country name to search')
       dispatch(getCountryByName(searchedCountry))
       setSearched(true)
     }

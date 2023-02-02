@@ -5,7 +5,7 @@ import {  useSelector } from 'react-redux';
 
 
 import style from './Form.module.css'
-import { validate, valideSubmit } from '../../helpers/formValidations';
+import { validate} from '../../helpers/formValidations';
 import { MultipleSelectionBox } from '../../components/MultipleSelectionBox/MultipleSelectionBox';
 
 
@@ -58,7 +58,6 @@ export const Form = () => {
     setForm({...form, countryid: [...form.countryid, event.target.value ]} )
   }
 
-  
 
   const  onDeletee = (country) => {
     setForm({...form, countryid: form.countryid.filter(c=> c !== country) } )
@@ -67,10 +66,18 @@ export const Form = () => {
   const submitHandler= (event) => {
     event.preventDefault()
     
-    valideSubmit(form)
+  
     axios.post("http://localhost:3001/activities",form)
       .then(res=>alert(res.data))
       .catch(err=>alert(err))
+    setForm({
+      name:"",
+      level:"",
+      season:"",
+      duration:"",
+      countryid: []
+    })
+    setFormCompleted(false)
   }
 
  
@@ -95,11 +102,16 @@ export const Form = () => {
 
         <form onSubmit={submitHandler} className={style.form}>
          
+
+
           <div className={style.inputName}>
               <label htmlFor='name' >Name: </label>
               <input type="text" value={form.name} onChange={changeHandler} name="name" placeholder='Activity name...' maxLength="30" autoComplete='off'/>
               {errors.name && <p className={style.errorText}>{errors.name}</p>}
           </div>
+
+
+
 
 
           <div className={style.inputCountry}>
@@ -113,8 +125,6 @@ export const Form = () => {
                       })
                     }
               </select>
-
-
           </div>
           {!form.countryid.length && <p className={style.errorSelectText}>Select at least one country</p>}
           

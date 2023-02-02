@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import { getCountriesAlphabetically, getCountriesbyContinent, getCountriesbyPopulation } from "../../helpers/filters"
 
 import { Card } from "../Card/Card"
@@ -15,7 +14,8 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
   const [filter, setFilter] = useState({
     continent: "All",
     orderBy: "alphabetically",
-    order:"ASC"
+    order:"ASC",
+    filterbyActivity: ""
   })
 
 
@@ -24,14 +24,11 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [page,setPage]= useState(1)
 
-  const dataPerPage =  countriesDB.slice(currentIndex, currentIndex+10) 
 
-  let dataToOrder = filter.continent === 'All' ? getCountriesbyContinent(dataPerPage , filter.continent) : getCountriesbyContinent(countriesDB , filter.continent).slice(currentIndex, currentIndex+10)
-  
-  
-  if (searchedResults.length >= 1) {dataToOrder = searchedResults}
-
+  let dataToOrder = searchedResults.length >= 1 ? searchedResults: getCountriesbyContinent(countriesDB , filter.continent).slice(currentIndex, currentIndex+10)
  
+  
+
   const nextHandler = () => {
     setCurrentIndex( currentIndex + 10 )
     setPage(page+1)
@@ -57,11 +54,16 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
   }
   //////////////
 
- 
- 
+  let allCountriesDataAZ = getCountriesAlphabetically(countriesDB.slice(0,countriesDB.length), filter.order)
 
-  let alphabetically =  getCountriesAlphabetically(dataToOrder.slice(0,dataToOrder.length), filter.order)        
-  let byPopulation = getCountriesbyPopulation(dataToOrder, filter.order)
+  let allCountriesDataPop = getCountriesbyPopulation(countriesDB.slice(0,countriesDB.length), filter.order)
+  
+
+
+  let alphabetically =  filter.continent === 'All' ?  allCountriesDataAZ.slice(currentIndex, currentIndex+10) : getCountriesAlphabetically(dataToOrder.slice(0,dataToOrder.length), filter.order)        
+  
+  let byPopulation = filter.continent === 'All' ?  allCountriesDataPop.slice(currentIndex, currentIndex+10) :  getCountriesbyPopulation(dataToOrder.slice(0,dataToOrder.length), filter.order)
+ 
 
   const changeHandler = (event) => {
     setCurrentIndex(0)
@@ -110,6 +112,9 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
               <input onChange={changeHandler} type="radio" id='DES' name='order' value='DES'/>
               <label htmlFor='DES'>⬇️</label>
           
+
+              <button onClick={changeHandler} name="filterbyActivity">Act - de 4hrs</button>
+            
             </form>
 
             <div className={style.pagination}>
@@ -149,6 +154,17 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
           
           <div className={searched && searchedResults.length === 0 ? style.noDisplay :style.containerCards}>
           {  
+
+              dataToOrder === searchedResults ?  dataToOrder.map(country=>{
+                return <Card
+                    key={country.id}
+                    id={country.id}
+                    name={country.name}
+                    flag={country.flag}
+                    continet ={country.continet}
+                />
+              }) :
+
               filter.orderBy === 'alphabetically' ?
               alphabetically.map(country=>{
                 return <Card
@@ -159,6 +175,7 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
                     continet ={country.continet}
                 />
               }):
+
               byPopulation.map(country=>{
                 return <Card
                     key={country.id}
@@ -171,8 +188,6 @@ export const CardsContainer = ({searchedCountry, searchedResults, searched}) => 
           } 
       </div>
         
-        
-
       
 
     </div>

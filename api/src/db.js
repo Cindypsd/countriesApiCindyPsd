@@ -34,6 +34,8 @@ const {Country , Activity } = sequelize.models;
 
 
 // Aca vendrian las relaciones
+
+
 Country.belongsToMany(Activity, {through: 'CountryActivities',timestamps: false})
 Activity.belongsToMany(Country, {through: 'CountryActivities',timestamps: false})
 
